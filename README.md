@@ -38,7 +38,7 @@ $ aws cloudformation create-stack --stack-name aws-iam-example \
   --template-body=file://iam-role.yaml --capabilities CAPABILITY_NAMED_IAM
 ```
 
-## Deploy exmaple
+## Deploy example
 
 ```bash
 $ kubectl apply -f deployment.yaml

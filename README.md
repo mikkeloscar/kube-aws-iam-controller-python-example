@@ -4,7 +4,7 @@ This is an example to demo/verify that the [AWS Python
 SDK (boto)](https://github.com/boto/botocore) works with the
 [kube-aws-iam-controller](https://github.com/mikkeloscar/kube-aws-iam-controller).
 
-It works by using
+It works by using the
 [credential_process](https://docs.aws.amazon.com/cli/latest/topic/config-vars.html#sourcing-credentials-from-external-processes)
 feature of the SDK where it can refresh credentials from an external process.
 

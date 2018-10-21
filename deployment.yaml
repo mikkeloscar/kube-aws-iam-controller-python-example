@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aws-iam-python-example
+  labels:
+    application: aws-iam-python-example
+    version: latest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: aws-iam-python-example
+  template:
+    metadata:
+      labels:
+        application: aws-iam-python-example
+        version: latest
+    spec:
+      containers:
+      - name: aws-iam-python-example
+        image: mikkeloscar/kube-aws-iam-controller-python-example:latest
+        env:
+        # must be set for the AWS SDK/AWS CLI to find the credentials file.
+        - name: AWS_SHARED_CREDENTIALS_FILE # used by python SDK
+          value: /meta/aws-iam/credentials.process
+        - name: AWS_DEFAULT_REGION
+          value: eu-central-1
+        volumeMounts:
+        - name: aws-iam-credentials
+          mountPath: /meta/aws-iam
+          readOnly: true
+        resources:
+          limits:
+            cpu: 5m
+            memory: 50Mi
+          requests:
+            cpu: 5m
+            memory: 50Mi
+      volumes:
+      - name: aws-iam-credentials
+        secret:
+          # secret should be named: aws-iam-<name-of-your-aws-iam-role>
+          secretName: aws-iam-aws-iam-example

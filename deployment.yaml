@@ -39,5 +39,11 @@ spec:
       volumes:
       - name: aws-iam-credentials
         secret:
-          # secret should be named: aws-iam-<name-of-your-aws-iam-role>
-          secretName: aws-iam-aws-iam-example
+          secretName: aws-iam-python-example # name of the AWSIAMRole resource
+---
+apiVersion: zalando.org/v1
+kind: AWSIAMRole
+metadata:
+  name: aws-iam-python-example
+spec:
+  roleReference: aws-iam-example
